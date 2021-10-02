@@ -1,5 +1,6 @@
 import pygame as pg
 import random
+import time
 
 pg.init()
 
@@ -13,8 +14,8 @@ scr = pg.display.set_mode((width,height))
 class Circle(pg.sprite.Sprite):
     def __init__(self, x, y):
         pg.sprite.Sprite.__init__(self)
-        self.speed = pg.Vector2(0,0.01)
-        self.acceleration = pg.Vector2(0.0000001, 0.0000001)
+        self.speed = pg.Vector2(0,0.0001)
+        self.acceleration = pg.Vector2(0.00001, 0.00001)
         self.colour = (255,0,0)
         self.pos = pg.Vector2(x, y)
         self.size = 15
@@ -28,11 +29,18 @@ class Circle(pg.sprite.Sprite):
         self.pos.y += self.speed.y 
         self.speed.x += self.acceleration.x
         self.speed.y += self.acceleration.y
-        if int(self.pos.x) > int(width-self.size) | int(self.pos.x) < int(width+self.size):
+        if int(self.pos.x) < int(0+self.size):
             self.speed.x*=-1
-        if int(self.pos.y) > int(height-self.size) | int(self.pos.y) < int(height+self.size):
-            self.speed.y*=-1 
-        
+            print('bouncedx')
+        if int(self.pos.x) > int(width-self.size):
+            self.speed.x*=-1
+            print('bouncedx')
+        if int(self.pos.y) < int(0+self.size):
+            self.speed.y*=-1
+            print('bouncedy')
+        if int(self.pos.y) > int(height-self.size):
+            self.speed.y*=-1
+            print('bouncedy')
 
 x = random.randint(15, width)
 y = random.randint(15, height)
