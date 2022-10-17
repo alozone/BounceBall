@@ -8,13 +8,11 @@ bg_color = (255,255,255)
 (width, height) = (400,400)
 
 scr = pg.display.set_mode((width,height))
-#class Gravity:
-#    def __init__(self):
 
 class Circle(pg.sprite.Sprite):
     def __init__(self, x, y):
         pg.sprite.Sprite.__init__(self)
-        self.speed = pg.Vector2(0,0.0001)
+        self.speed = pg.Vector2(0.1,0.1)
         self.acceleration = pg.Vector2(0.00001, 0.00001)
         self.colour = (255,0,0)
         self.pos = pg.Vector2(x, y)
@@ -27,20 +25,14 @@ class Circle(pg.sprite.Sprite):
     def update(self):
         self.pos.x += self.speed.x 
         self.pos.y += self.speed.y 
-        self.speed.x += self.acceleration.x
-        self.speed.y += self.acceleration.y
         if int(self.pos.x) < int(0+self.size):
             self.speed.x*=-1
-            print('bouncedx')
         if int(self.pos.x) > int(width-self.size):
             self.speed.x*=-1
-            print('bouncedx')
         if int(self.pos.y) < int(0+self.size):
             self.speed.y*=-1
-            print('bouncedy')
         if int(self.pos.y) > int(height-self.size):
             self.speed.y*=-1
-            print('bouncedy')
 
 x = random.randint(15, width)
 y = random.randint(15, height)
